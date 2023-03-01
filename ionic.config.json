@@ -1,0 +1,7 @@
+{
+  "name": "CalcolatoreInotropi",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
