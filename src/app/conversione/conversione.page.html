@@ -1,0 +1,72 @@
+<ion-content [fullscreen]="true">
+
+  <div class="main_content_div">
+
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="title">Calcolatore Inotropi</ion-label>
+      </div>
+    </div>
+
+    <div class="content_div animated bounceInUp">      
+      <ion-label class="select_lbl">Select your activity</ion-label>
+
+      <ion-grid fixed>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Soluto</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="soluto" placeholder="Inserisci soluto">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Solvente</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="solvente" placeholder="Inserisci solvente">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Velocita' (ml/h)</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="velocita" placeholder="Inserisci velocita'">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col  (click)="converti()">
+            <div class="col_div" id="conferma_btn">
+              <ion-label>Conferma</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>  
+
+  </div>
+
+  <ion-modal #modal [isOpen]="openPopup" (didDismiss)="openPopup = false">
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>CONVERSIONE</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <div class="text" id="first">{{name}} {{soluto}} mg / {{solvente}} ml</div>
+        <div class="text">La velocita' di {{velocita}} ml/h</div>
+        <div class="text">equivale a {{result}} mcg/kg/min</div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

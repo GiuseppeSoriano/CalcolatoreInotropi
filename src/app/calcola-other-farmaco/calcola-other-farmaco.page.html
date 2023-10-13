@@ -1,0 +1,83 @@
+<ion-content [fullscreen]="true">
+
+  <div class="main_content_div">
+
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="title">{{name}}</ion-label>
+        <ion-label class="title">Peso paziente: {{peso}} kg</ion-label>
+      </div>
+    </div>
+
+    <div class="content_div">
+      <ion-label class="select_lbl">Dose standard: {{dose_standard}}</ion-label>
+
+      <ion-grid fixed>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Numero di fiale</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="fiale" placeholder="Inserisci fiale">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Volume totale (ml)</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="volume" placeholder="Inserisci volume totale">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div_select">
+              <ion-label>Inserire valore da convertire</ion-label>
+              <div class="input_wrapper">
+                <input type="number" class="input_conversione" [(ngModel)]="val1" placeholder="Da">
+                <ion-select interface="popover" placeholder="Select" (ionChange)="handleChange1($event)">
+                  <ion-select-option *ngFor="let item of units" [value]="item">{{item.name}}</ion-select-option>
+                </ion-select>
+              </div>
+              <div class="input_wrapper">
+                <input id="final" type="number" class="input_conversione" [(ngModel)]="val2" placeholder="A" disabled>
+                <ion-select interface="popover" placeholder="Select" (ionChange)="handleChange2($event)">
+                  <ion-select-option *ngFor="let item of units" [value]="item">{{item.name}}</ion-select-option>
+                </ion-select>
+              </div>
+            </div>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col  (click)="calcola()">
+            <div class="col_div" id="conferma_btn">
+              <ion-label>CALCOLA</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>  
+
+  </div>
+
+  <ion-modal #modal [isOpen]="openPopup" (didDismiss)="openPopup = false">
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>ATTENZIONE</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <div class="text">Volume troppo piccolo. Inserire valore coerente con numero di fiale.</div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

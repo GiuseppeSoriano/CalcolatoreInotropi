@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true">
+
+  <div class="main_content_div">
+
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="title">Calcolatore Inotropi</ion-label>
+      </div>
+    </div>
+
+    <div class="content_div animated bounceInUp">      
+      <ion-label class="select_lbl">Select your activity</ion-label>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col (click)="diluizione(true)">
+            <div class="col_div">
+              <ion-label>Diluizione standard</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col (click)="diluizione(false)">
+            <div class="col_div">
+              <ion-label>Diluizione personalizzata</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col (click)="conversione()">
+            <div class="col_div">
+              <ion-label>Conversione da (ml/h) a (mcg/kg/min)</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>  
+
+  </div>
+
+</ion-content>

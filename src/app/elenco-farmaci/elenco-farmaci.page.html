@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+
+  <div class="main_content_div">
+
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="title">Calcolatore Inotropi</ion-label>
+      </div>
+    </div>
+
+    <div class="content_div1">      
+      <ion-label class="select_lbl">Seleziona un farmaco</ion-label>
+    </div>
+    <div class="content_div2">
+      <ion-grid fixed>
+        <ion-row *ngFor="let item of Farmaci">
+          <ion-col (click)="goNext($event, item)" >
+            <div class="col_div">
+              <ion-label>{{item.Name}}</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+    </div>  
+  </div>
+
+</ion-content>

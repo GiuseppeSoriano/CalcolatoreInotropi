@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true">
+
+  <div class="main_content_div">
+
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="title">Calcolatore Inotropi</ion-label>
+      </div>
+    </div>
+
+    <div class="content_div animated bounceInUp">      
+      <ion-label class="select_lbl">Select your activity</ion-label>
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Quantita' Soluto (mg)</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="soluto" placeholder="Inserisci soluto">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="col_div">
+              <ion-label>Volume Solvente (ml)</ion-label>
+              <input type="number" class="input-filter" [(ngModel)]="solvente" placeholder="Inserisci solvente">
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col  (click)="calcolaDiluizione()">
+            <div class="col_div" id="conferma_btn">
+              <ion-label>Conferma</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>  
+
+  </div>
+
+  <ion-modal #modal [isOpen]="openPopup" (didDismiss)="openPopup = false">
+    <ng-template>
+      <ion-content>
+        <ion-toolbar>
+          <ion-title>ATTENZIONE</ion-title>
+          <ion-buttons slot="end">
+            <ion-button color="light" (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <div class="text">INSERIRE VALORI CORRETTI</div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

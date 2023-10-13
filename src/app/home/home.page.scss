@@ -1,27 +1,209 @@
-#container {
+ion-content{
+  --background: linear-gradient( to right, #243949, #517fa4);
+}
+
+.main_content_div{
+width: 100%;
+
+.menu_btn{
+  position: relative;
+  top: 40px;
+  left: 10px;
+}
+
+ion-label{
+  display: block;
+  color: #243949;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.user_div{
+  padding-left: 20px;
+  width: 100%;
+  height: 260px;    //210
+  background: linear-gradient( to right, #243949, #517fa4);
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  display: flex;
+  padding-top: 60px;    //40
+  justify-content: space-between;
+
+  .first_div{
+    .title{
+      font-size: 38px;    //24
+      color: white;
+      font-weight: 600;   //800
+      display:inline-block;
+    }
+/*    img{
+      position: fixed;
+      z-index: 90;
+      top: 34px;
+      right: 25px;
+      display: inline-block;
+      height: 40px;
+    }
+*/
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.content_div1{
+  position: fixed;
+  z-index: 100;
+  top: 160px;   //110
+  background: white;
+  width: 100%;
+  height: 120px;
+  border-top-right-radius: 75px;
+  margin-bottom: 0px;
+  padding-top: 30px;
 
-  color: #8c8c8c;
+  .select_lbl{
+    font-weight: 600;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-top: 10px;
+  }
 
-  margin: 0;
+  .input-filter{
+    background: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: center;
+    height: 40px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    color: black;
+    width: 95%;
+  }
 }
 
-#container a {
-  text-decoration: none;
+.content_div2{
+  margin-top: 280px;    //230
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-bottom-right-radius: 75px;
+  padding-top: 2px;
+  padding-bottom: 60px;
+
+  ion-grid{
+    padding: 0px;
+  }
+
+  .col_div{
+    background: linear-gradient( to right, #243949, #517fa4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 50px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    margin-top: 5px;
+
+    img{
+      width: 70px;
+    }
+
+    ion-label{
+      color: white;
+    }
+  }
 }
+}
+
+ion-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: 160px;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal ion-content {
+  --background: rgba(209, 213, 219);
+  --color: black;
+}
+
+ion-modal ion-content {
+  --background: rgba(209, 213, 219);
+  --color: black;
+  .text{
+    text-align: center;
+    font-size: 24px;
+    padding-top: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .text_disclaimer{
+    text-align: left;
+    font-size: 12px;
+    padding-top: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+  text-align: center;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
+
+.banner-adv {
+  position: fixed; /* Posiziona il riquadro in modo fisso */
+  bottom: 0; /* Posiziona il riquadro in fondo alla pagina */
+  width: 100%; /* Imposta la larghezza massima del riquadro */
+  background-color: whitesmoke; /* Imposta il colore di sfondo del riquadro */
+  display: flex; /* Imposta il display flessibile per allineare l'immagine e il testo */
+  align-items: center; /* Allinea i figli verticalmente */
+  justify-content: center; /* Allinea i figli orizzontalmente */
+  padding: 1px; /* Aggiunge un padding al riquadro */
+}
+
+.banner-adv img {
+  height: 50px;
+  margin-right: 10px; /* Aggiunge un margine destro all'immagine */
+}
+
+a {
+  color: black; /* Imposta il colore del testo a bianco */
+  font-size: 16px; /* Imposta la dimensione del testo a 16px */
+  text-decoration: none; /* Rimuove la sottolineatura dal testo */
+}
+
+strong{
+  font-size: 19px;
+}
+
+@media screen and (orientation: landscape) {
+  .banner-adv {
+    display: none;
+  }
+}
+
+.footer{
+  width: 100%;
+  height: 20px;
+  color: white;
+  background: linear-gradient( to right, #243949, #517fa4);
+  position:absolute;
+  bottom: 58px;
+  text-align: right;
+  justify-content: center;
+  padding-right: 10px;
+}
+
