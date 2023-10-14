@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calcola-diluizione',
@@ -8,8 +7,6 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./calcola-diluizione.page.scss'],
 })
 export class CalcolaDiluizionePage implements OnInit {
-
-  Database: SQLiteObject | any;
   soluto: number = 0;
   solvente: number = 0;
   fiale: number = 0;
@@ -26,7 +23,7 @@ export class CalcolaDiluizionePage implements OnInit {
   mod_diluizione: string;
   dose_terapeutica: string;
 
-  constructor(private sqlite: SQLite, private router:Router) { 
+  constructor(private router:Router) { 
     const navigation = this.router.getCurrentNavigation();
     if(navigation){
       const state = navigation.extras.state as {
@@ -66,9 +63,6 @@ export class CalcolaDiluizionePage implements OnInit {
       this.solvente = 0;
       this.fiale = 0;
     }
-    this.sqlite.create({name: 'myapp.db', location: 'default'}).then((db: SQLiteObject) => {
-      this.Database = db;
-    })
   }
 
   ngOnInit() {

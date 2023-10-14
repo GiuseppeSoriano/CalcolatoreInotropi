@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -8,8 +8,6 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./calcola-other-farmaco.page.scss'],
 })
 export class CalcolaOtherFarmacoPage implements OnInit {
-
-  Database: SQLiteObject | any;
   soluto: any = null;
   fiale: any = null;
   volume: any = null;
@@ -52,9 +50,6 @@ export class CalcolaOtherFarmacoPage implements OnInit {
       this.dose_standard = "";
       this.name = "";
     }
-    this.sqlite.create({name: 'myapp.db', location: 'default'}).then((db: SQLiteObject) => {
-      this.Database = db;
-    })
   }
 
   ngOnInit() {

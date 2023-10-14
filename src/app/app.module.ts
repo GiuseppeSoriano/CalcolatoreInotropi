@@ -10,12 +10,13 @@ import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { SQLitePorter } from '@awesome-cordova-plugins/sqlite-porter/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
+import { DatabaseService } from './database.service';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite, SQLitePorter, SplashScreen],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },SQLite, SQLitePorter, SplashScreen, DatabaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Router, NavigationExtras } from '@angular/router';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-elenco-farmaci',
@@ -9,12 +8,10 @@ import { NonNullableFormBuilder } from '@angular/forms';
   styleUrls: ['./elenco-farmaci.page.scss'],
 })
 export class ElencoFarmaciPage implements OnInit {
-
-  Database: SQLiteObject | any;
   peso: any;
   Farmaci: any;
   
-  constructor(private sqlite: SQLite, private router:Router) { 
+  constructor(private router:Router, private DatabaseService: DatabaseService) { 
     const navigation = this.router.getCurrentNavigation();
     if(navigation){
       const state = navigation.extras.state as {
@@ -22,10 +19,6 @@ export class ElencoFarmaciPage implements OnInit {
       };
       this.peso = state.Peso;
     }
-    this.sqlite.create({name: 'myapp.db', location: 'default'}).then((db: SQLiteObject) => {
-      this.Database = db;
-      this.fill_farmaci();
-    })
     this.Farmaci = [
       {
         code: '',
@@ -34,22 +27,24 @@ export class ElencoFarmaciPage implements OnInit {
     ];
   }
 
-  fill_farmaci(){
+  ngOnInit(){
     this.Farmaci.pop();
-    let sql = "SELECT * FROM otherfarmaco";
-
-    this.Database.executeSql(sql, [])
-      .then((result: any) => {
-        for (let i = 0; i < result.rows.length; i++) {
-          let item = result.rows.item(i);
-          this.Farmaci.push(item);
-        }
-      })
-      .catch((e:any) => console.log(e));
-  }
-
-  ngOnInit() {
     
+    if(this.DatabaseService.database != null){
+      let sql = "SELECT * FROM otherfarmaco";
+      console.log(sql);
+      this.DatabaseService.database.executeSql(sql, [])
+        .then((result: any) => {
+          for (let i = 0; i < result.rows.length; i++) {
+            let item = result.rows.item(i);
+            this.Farmaci.push(item);
+          }
+        })
+        .catch((e:any) => console.log(e));
+    }
+    else{
+      console.log("database is null");
+    }
   }
   
   goHome(){

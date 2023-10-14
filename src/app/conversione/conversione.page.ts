@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -8,8 +7,6 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./conversione.page.scss'],
 })
 export class ConversionePage implements OnInit {
-
-  Database: SQLiteObject | any;
   soluto: any = null;
   solvente: any = null;
   velocita: any = null;
@@ -19,7 +16,7 @@ export class ConversionePage implements OnInit {
   openPopup: boolean = false;
   result: number = 0;
 
-  constructor(private sqlite: SQLite, private router:Router) { 
+  constructor(private router:Router) { 
     const navigation = this.router.getCurrentNavigation();
     if(navigation){
       const state = navigation.extras.state as {
@@ -31,9 +28,6 @@ export class ConversionePage implements OnInit {
       this.name = state.Name;
       this.peso = state.Peso;
     }
-    this.sqlite.create({name: 'myapp.db', location: 'default'}).then((db: SQLiteObject) => {
-      this.Database = db;
-    })
   }
 
   ngOnInit() {

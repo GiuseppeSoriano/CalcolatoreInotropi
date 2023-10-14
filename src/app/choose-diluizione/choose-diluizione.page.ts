@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -8,7 +8,6 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./choose-diluizione.page.scss'],
 })
 export class ChooseDiluizionePage implements OnInit {
-  Database: SQLiteObject | any;
   soluto: any;
   solvente: any;
   fiale: any;
@@ -18,6 +17,7 @@ export class ChooseDiluizionePage implements OnInit {
   min_dose: any;
   max_dose: any;
   openPopup: boolean = false;
+  
   constructor(private sqlite: SQLite, private router:Router) { 
     const navigation = this.router.getCurrentNavigation();
     if(navigation){
@@ -41,9 +41,6 @@ export class ChooseDiluizionePage implements OnInit {
       this.min_dose = state.Min_dose;
       this.max_dose = state.Max_dose;
     }
-    this.sqlite.create({name: 'myapp.db', location: 'default'}).then((db: SQLiteObject) => {
-      this.Database = db;
-    })
   }
 
   ngOnInit() {

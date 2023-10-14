@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Router, NavigationExtras } from '@angular/router';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-secondary',
@@ -8,7 +8,6 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./secondary.page.scss'],
 })
 export class SecondaryPage implements OnInit {
-  Database: SQLiteObject | any;
   soluto: any;
   solvente: any;
   fiale: any;
@@ -17,7 +16,8 @@ export class SecondaryPage implements OnInit {
   peso: any;
   min_dose: any;
   max_dose: any;
-  constructor(private sqlite: SQLite, private router:Router) { 
+  
+  constructor(private router:Router, private DatabaseService: DatabaseService) { 
     const navigation = this.router.getCurrentNavigation();
     if(navigation){
       const state = navigation.extras.state as {
@@ -29,9 +29,6 @@ export class SecondaryPage implements OnInit {
       this.name = state.Name;
       this.peso = state.Peso;
     }
-    this.sqlite.create({name: 'myapp.db', location: 'default'}).then((db: SQLiteObject) => {
-      this.Database = db;
-    })
   }
 
   ngOnInit() {
@@ -42,11 +39,10 @@ export class SecondaryPage implements OnInit {
   }
   
   diluizione(standard: boolean){
-    console.log(this.codice);
-    
-    let sql = "SELECT * FROM farmaco WHERE Codice = '" + this.codice + "'";  // " + this.codice + "
+    let sql = "SELECT * FROM farmaco WHERE Codice = '" + this.codice + "'";
 
-    this.Database.executeSql(sql, [])
+    if(this.DatabaseService.database != null){
+      this.DatabaseService.database.executeSql(sql, [])
       .then((result:any) => {
         for (let i = 0; i < result.rows.length; i++) {
           let item = result.rows.item(i);
@@ -80,6 +76,7 @@ export class SecondaryPage implements OnInit {
 
       })
       .catch((e: any) => console.log(e));
+    }
   }
 
   conversione(){
