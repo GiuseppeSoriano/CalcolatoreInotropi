@@ -68,5 +68,4 @@ testem.log
 Thumbs.db
 
 # Keys
-CalcolatoreInotropi.jks
-private_key.pepk
+keys/*
