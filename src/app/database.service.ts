@@ -15,7 +15,7 @@ export class DatabaseService {
   }
 
   initializeDatabase() {
-    this.sqlite.create({ name: 'dbinotropi.db', location: 'default' })
+    this.sqlite.create({ name: 'dbinotropi_1.db', location: 'default' })
       .then((db: SQLiteObject) => {
         this.database = db;
 
